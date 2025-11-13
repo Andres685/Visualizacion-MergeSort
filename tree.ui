@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>803</width>
+    <height>880</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* === GLOBAL BACKGROUND &amp; FONT === */
+QWidget {
+    background-color: #0e0e1a;
+    color: #e0e0ff;
+    font-family: &quot;Segoe UI&quot;, Roboto, sans-serif;
+    font-size: 10pt;
+}
+
+/* === BUTTONS === */
+QPushButton {
+    background-color: #1a1a2e;
+    border: 2px solid #6c63ff;
+    color: #e0e0ff;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                    stop:0 #6c63ff, stop:1 #00eaff);
+    border: 2px solid #00eaff;
+    color: white;
+    box-shadow: 0px 0px 12px #6c63ff;
+}
+
+QPushButton:pressed {
+    background-color: #2a2a40;
+    border: 2px solid #5a52d5;
+    color: #dcdcff;
+}
+
+/* === SPINBOXES === */
+QSpinBox, QDoubleSpinBox {
+    background-color: #141429;
+    color: #e0e0ff;
+    border: 1px solid #3c3c5a;
+    border-radius: 6px;
+    padding: 4px 6px;
+}
+
+QSpinBox:hover, QDoubleSpinBox:hover {
+    border: 1px solid #6c63ff;
+}
+
+QSpinBox::up-button, QDoubleSpinBox::up-button,
+QSpinBox::down-button, QDoubleSpinBox::down-button {
+    background-color: #1f1f35;
+    border: none;
+    width: 16px;
+}
+
+QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
+    background-color: #2b2b4b;
+}
+
+/* === LABELS === */
+QLabel {
+    color: #cfcfff;
+    font-weight: 500;
+}
+
+QLabel#lblComparisons, QLabel#lblBest, QLabel#lblWorst {
+    background-color: #181830;
+    border: 1px solid #2f2f5a;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: #b8b8ff;
+    font-size: 9pt;
+}
+
+QLabel#lblSorted {
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+                stop:0 #2b1d47, stop:1 #1c0f3b);
+    border: 1px solid #6c63ff;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 700;
+    color: #a88eff;
+}
+
+/* === GROUPBOXES OR FRAMES === */
+QGroupBox, QFrame {
+    border: 1px solid #282846;
+    border-radius: 8px;
+    margin-top: 6px;
+    background-color: #121226;
+    padding: 8px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 4px;
+    color: #9d8cff;
+}
+
+/* === SCROLLBARS === */
+QScrollBar:vertical {
+    background: #1a1a2e;
+    width: 12px;
+    margin: 0;
+    border-radius: 6px;
+}
+QScrollBar::handle:vertical {
+    background: #6c63ff;
+    border-radius: 6px;
+    min-height: 20px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #00eaff;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    background: none;
+    border: none;
+    height: 0;
+}
+
+/* === TOOLTIP === */
+QToolTip {
+    background-color: #1c1c30;
+    color: #e0e0ff;
+    border: 1px solid #6c63ff;
+    border-radius: 6px;
+    padding: 4px 6px;
+}
+QHeaderView::section {
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+                stop:0 #1a1630, stop:1 #24183b);
+    color: #e8e8ff;          /* texto claro y legible */
+    padding: 6px;
+    border: 1px solid #3a2f66;
+    font-weight: 700;
+    font-size: 10pt;
+}
+QLabel#blue {
+	background-color: #00aaff;
+    font-weight: 500;
+}
+QLabel#red{
+	background-color: #f60000
+}
+QLabel#green{
+	background-color: #1a8a1a
+}
+QTreeWidget::item {
+    color: #cfcfff;
+    font-weight: 500;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QTreeWidget" name="treeWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>571</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <attribute name="headerMinimumSectionSize">
+     <number>90</number>
+    </attribute>
+    <attribute name="headerDefaultSectionSize">
+     <number>250</number>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Segmento [l:r}</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Contenido</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QSpinBox" name="spinN">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>50</y>
+      <width>68</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnGenerate">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>90</y>
+      <width>94</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Generar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStart">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>130</y>
+      <width>94</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Iniciar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnPause">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>170</y>
+      <width>94</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pausar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStep">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>250</y>
+      <width>94</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Paso</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnReset">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>210</y>
+      <width>94</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reiniciar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblComparisons">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>280</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Comparaciones: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBest">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>330</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mejor Caso</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblWorst">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>370</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Peor Caso</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>40</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> N: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>410</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Entrada al Llamado Recursivo</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>410</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Comparando Listas (Merge)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>410</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Segmento Ordenado</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="blue">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>410</y>
+      <width>49</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="red">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>410</y>
+      <width>49</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="green">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>410</y>
+      <width>49</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="plotWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>731</width>
+      <height>311</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>803</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
