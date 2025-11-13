@@ -87,7 +87,7 @@ class MergeTreeController:
         f.close()
 
         # Tamaño de ventana
-        self.win.setFixedSize(800, 2000)
+        self.win.setFixedSize(800, 600)
         self.win.setWindowTitle("MergeSort - Tree Visual (controller)")
 
         # Buscar widgets por objectName (los definidos en Designer)
@@ -242,7 +242,6 @@ class MergeTreeController:
 
     # ---------------- Tree building (solo con QTreeWidget que definiste en Designer) ----------------
     def build_tree(self):
-        """Construye nodos en el treeWidget siguiendo la recursión de merge sort (sin ejecutar)."""
         if self.tree is None:
             return
         self.tree.clear()
@@ -432,26 +431,9 @@ class MergeTreeController:
                 item.setBackground(0, QBrush(QColor("#1a8a1a")))
                 item.setText(1, str(snap))
 
-    # ---------------- Monitor summary / helper ----------------
-    def _print_monitor_summary(self):
-        if not _HAS_MONITOR:
-            return
-        try:
-            max_cpu = max(self._cpu) if self._cpu else 0.0
-            max_mem = max(self._mem) if self._mem else 0.0
-            avg_cpu = (sum(self._cpu)/len(self._cpu)) if self._cpu else 0.0
-            avg_mem = (sum(self._mem)/len(self._mem)) if self._mem else 0.0
-            print(f"[Monitor] Peak CPU: {max_cpu:.1f}%  Avg CPU: {avg_cpu:.1f}%")
-            print(f"[Monitor] Peak RSS: {max_mem:.2f} MB  Avg RSS: {avg_mem:.2f} MB")
-        except Exception:
-            pass
-
-    # ---------------- Exponer ventana para mostrar ----------------
     def show(self):
         self.win.show()
 
-
-# ----------------- Main -----------------
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     controller = MergeTreeController("tree.ui")

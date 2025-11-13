@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>667</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* ---------------------------
+   TEMA OSCURO NEÓN (MORADO/AZUL)
+   Dirigido a:
+   - QPushButton#Comparaciones  OR QPushButton[class=&quot;Comparaciones&quot;]
+   - QPushButton#Mergesort      OR QPushButton[class=&quot;Mergesort&quot;]
+   - QPushButton#Quicksort      OR QPushButton[class=&quot;Quicksort&quot;]
+   - QLabel#label               OR QLabel[class=&quot;label&quot;]
+---------------------------- */
+
+/* Fondo general */
+QMainWindow, QWidget {
+  background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1,
+                              stop:0 #070812, stop:1 #0f1324);
+  color: #e9ebff;
+  font-family: &quot;Segoe UI&quot;, &quot;Roboto&quot;, Arial;
+}
+
+/* Card/container opcional */
+QWidget#card {
+  background: rgba(255,255,255,0.03);
+  border-radius: 14px;
+  border: 1px solid rgba(120, 40, 255, 0.08);
+  padding: 18px;
+}
+
+/* LABEL PRINCIPAL (label) */
+QLabel#label, QLabel[class=&quot;label&quot;] {
+  color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1,
+                         stop:0 #d9c2ff, stop:1 #a8f0ff);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 12px;
+  background: transparent;
+  border-radius: 8px;
+}
+
+/* Texto secundario */
+QLabel {
+  color: rgba(220,230,255,0.9);
+}
+
+/* --------------------------
+   BOTONES — estilo base
+   (aplicado por objectName o por propiedad 'class')
+   ------------------------- */
+QPushButton#Comparaciones, QPushButton[class=&quot;Comparaciones&quot;],
+QPushButton#Mergesort, QPushButton[class=&quot;Mergesort&quot;],
+QPushButton#Quicksort, QPushButton[class=&quot;Quicksort&quot;] {
+  min-width: 140px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
+  color: #061226;
+  cursor: pointer;
+}
+
+/* Comparaciones — estilo morado neón */
+QPushButton#Comparaciones, QPushButton[class=&quot;Comparaciones&quot;] {
+  background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1,
+                              stop:0 #6a00ff, stop:1 #b84bff);
+  color: #f6f3ff;
+  border: 1px solid rgba(186, 75, 255, 0.35);
+}
+
+/* Hover y pressed (Comparaciones) */
+QPushButton#Comparaciones:hover, QPushButton[class=&quot;Comparaciones&quot;]:hover {
+  background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                             stop:0 #7b2bff, stop:1 #ce7bff);
+  transform: scale(1.04);
+}
+QPushButton#Comparaciones:pressed, QPushButton[class=&quot;Comparaciones&quot;]:pressed {
+  transform: translateY(2px) scale(0.98);
+  background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                             stop:0 #5a00e6, stop:1 #9a3fe6);
+  border: 1px solid rgba(120, 20, 220, 0.45);
+}
+
+/* Mergesort — estilo azul neón (principal) */
+QPushButton#Mergesort, QPushButton[class=&quot;Mergesort&quot;] {
+  background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1,
+                              stop:0 #00b7ff, stop:1 #6cf0ff);
+  color: #031026;
+  border: 1px solid rgba(0, 215, 255, 0.18);
+}
+
+/* Hover y pressed (Mergesort) */
+QPushButton#Mergesort:hover, QPushButton[class=&quot;Mergesort&quot;]:hover {
+  background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                             stop:0 #1ad7ff, stop:1 #8ff8ff);
+  transform: scale(1.04);
+}
+QPushButton#Mergesort:pressed, QPushButton[class=&quot;Mergesort&quot;]:pressed {
+  transform: translateY(2px) scale(0.98);
+  background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                             stop:0 #00a2e6, stop:1 #4ad7e6);
+  border: 1px solid rgba(0, 150, 220, 0.35);
+}
+
+/* Quicksort — estilo outline morado con glow interior */
+QPushButton#Quicksort, QPushButton[class=&quot;Quicksort&quot;] {
+  background: rgba(255,255,255,0.02);
+  color: #e6dbff;
+  border: 1px solid rgba(150, 60, 255, 0.28);
+  box-shadow: none; /* Qt no soporta box-shadow en QSS; dejar para efectos gráficos */
+}
+
+/* Hover y pressed (Quicksort) */
+QPushButton#Quicksort:hover, QPushButton[class=&quot;Quicksort&quot;]:hover {
+  background: rgba(140, 45, 255, 0.14);
+  border: 1px solid rgba(210, 100, 255, 0.48);
+  transform: scale(1.035);
+}
+QPushButton#Quicksort:pressed, QPushButton[class=&quot;Quicksort&quot;]:pressed {
+  transform: translateY(1px) scale(0.985);
+  background: rgba(120, 20, 255, 0.22);
+}
+
+/* Disabled state */
+QPushButton:disabled {
+  background: rgba(255,255,255,0.02);
+  color: rgba(200,200,220,0.5);
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+/* Focus (suavizado) */
+QPushButton:focus {
+  outline: none;
+  border: 1px solid rgba(180, 90, 255, 0.55);
+}
+
+/* Pequeños toques estéticos adicionales */
+QLabel#subtitle, QLabel[class=&quot;subtitle&quot;] {
+  color: rgba(200,210,255,0.6);
+  font-size: 12px;
+}
+
+/* Scrollbars (opcional, a juego) */
+QScrollBar:vertical {
+  background: transparent;
+  width: 10px;
+  margin: 6px 0 6px 0;
+}
+QScrollBar::handle:vertical {
+  min-height: 20px;
+  border-radius: 5px;
+  background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                             stop:0 #6a00ff, stop:1 #00b7ff);
+}
+QScrollBar::handle:vertical:hover {
+  background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                             stop:0 #8b3bff, stop:1 #1ad7ff);
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>661</width>
+      <height>461</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QPushButton" name="Comparaciones">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>300</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Comparacion</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Quicksort">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>190</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>QuickSort Visualize</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Mergesort">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>190</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>MergeSort Visualize</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>110</y>
+       <width>241</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Comprension y Comparacion de Algoritmos</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>667</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
